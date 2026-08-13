@@ -1,0 +1,25 @@
+{
+  "title": "Task Platform Overview",
+  "panels": [
+    {
+      "title": "Backend Pod CPU Usage",
+      "type": "timeseries",
+      "targets": [{ "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"taskapp\", pod=~\"backend-.*\"}[5m])) by (pod)" }]
+    },
+    {
+      "title": "Backend Pod Memory Usage",
+      "type": "timeseries",
+      "targets": [{ "expr": "sum(container_memory_working_set_bytes{namespace=\"taskapp\", pod=~\"backend-.*\"}) by (pod)" }]
+    },
+    {
+      "title": "Pod Restarts",
+      "type": "timeseries",
+      "targets": [{ "expr": "sum(kube_pod_container_status_restarts_total{namespace=\"taskapp\"}) by (pod)" }]
+    },
+    {
+      "title": "Pods Not Ready",
+      "type": "stat",
+      "targets": [{ "expr": "sum(kube_pod_status_ready{namespace=\"taskapp\", condition=\"false\"})" }]
+    }
+  ]
+}

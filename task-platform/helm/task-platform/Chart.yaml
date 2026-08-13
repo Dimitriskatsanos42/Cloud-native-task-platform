@@ -1,0 +1,6 @@
+apiVersion: v2
+name: task-platform
+description: Cloud-Native Task Management Platform Helm chart
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

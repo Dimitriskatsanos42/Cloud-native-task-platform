@@ -1,0 +1,40 @@
+# Default values - overridden by values-dev.yaml / values-prod.yaml
+namespace: taskapp
+
+backend:
+  image:
+    repository: task-platform-backend
+    tag: local
+  replicas: 2
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 300m, memory: 256Mi }
+
+frontend:
+  image:
+    repository: task-platform-frontend
+    tag: local
+  replicas: 2
+  resources:
+    requests: { cpu: 50m, memory: 64Mi }
+    limits: { cpu: 200m, memory: 128Mi }
+
+postgres:
+  image:
+    repository: postgres
+    tag: 16-alpine
+  storage: 1Gi
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 500m, memory: 512Mi }
+
+database:
+  name: taskdb
+  user: postgres
+  # password is intentionally NOT set here - passed via --set or a separate
+  # secrets file that is gitignored, never committed in plaintext.
+  password: ""
+
+ingress:
+  enabled: true
+  className: nginx

@@ -1,0 +1,17 @@
+# Values file for the kube-prometheus-stack Helm chart (Phase 6).
+# Installed separately: helm install monitoring prometheus-community/kube-prometheus-stack -f this file
+grafana:
+  enabled: true
+  adminPassword: "changeme-local-dev"
+  service:
+    type: ClusterIP
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    resources:
+      requests: { cpu: 100m, memory: 256Mi }
+      limits: { cpu: 500m, memory: 512Mi }
+
+alertmanager:
+  enabled: true
