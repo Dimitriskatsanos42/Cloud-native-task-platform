@@ -211,8 +211,6 @@ CPU/μνήμης pod, restarts, και readiness.
 - Το ίδιο Helm chart, διαφορετικό `values-prod.yaml` και registry εικόνων.
 - Remote state backend για το Terraform (S3+DynamoDB ή αντίστοιχο) αντικαθιστά το τοπικό state.
 
-**Μην δημιουργείς cloud resources χωρίς πρώτα να κάνεις review το αναμενόμενο κόστος.**
-
 ## Αντιμετώπιση προβλημάτων
 
 | Σύμπτωμα | Πιθανή αιτία | Λύση |
@@ -223,8 +221,3 @@ CPU/μνήμης pod, restarts, και readiness.
 | Το `terraform apply` αποτυγχάνει να δημιουργήσει το cluster | Ο Docker δεν τρέχει / όρια πόρων στο WSL2 | Βεβαιώσου ότι τρέχει το Docker Desktop· έλεγξε την κατανομή μνήμης στο `.wslconfig` |
 | Το Helm install αποτυγχάνει σε υπάρχοντα αντικείμενα namespace | Το namespace/αντικείμενα έχουν ήδη εφαρμοστεί μέσω raw `kubectl apply` | `kubectl delete -f kubernetes/` πρώτα, ή επίλεξε μία μέθοδο deployment κάθε φορά |
 
-## Μαθήματα που αποκόμισα
-
-_(συμπλήρωσέ το καθώς χτίζεις — π.χ. trade-offs StatefulSet vs Deployment, γιατί το
-path rewriting του Ingress χρειάστηκε τα regex capture groups, γιατί το Terraform δεν
-διαχειρίζεται in-cluster workloads σε αυτή τη φάση, κ.λπ.)_
